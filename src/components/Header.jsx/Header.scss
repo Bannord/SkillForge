@@ -1,0 +1,23 @@
+.header_wrapper {
+    margin-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 32px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.wrapper_lists {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.item {
+    margin-right: 28px;
+}
+
+.item:last-child {
+    margin-right: 0;
+}
