@@ -8,7 +8,7 @@ const Header = () => {
         <div className="header_wrapper">
             <div className="left_side_bar">
                 <div className="logo_wrapper">
-                    <img src="" alt="" />
+                    <img src="./logo.svg" alt="hammer" className="logo_img" />
                 </div>
                 <div className="title_logo">
                     <span>Grippo</span>

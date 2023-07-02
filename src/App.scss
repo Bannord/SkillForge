@@ -33,3 +33,24 @@
 .block_user + .block_user {
   margin-bottom: 30px;
 }
+
+.search_bar_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_wrapper {
+  margin-bottom: 40px;
+}
+
+.input {
+  width: 150px;
+  height: 20px;
+}
+
+.lists_wrapper {
+  background-color: #FAEBD7;
+  width: 150px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
