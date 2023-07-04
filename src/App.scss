@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  text-decoration: none;
+}
+
+a {
+  color: black  ;
 }
 
 .App {
@@ -39,14 +44,7 @@
   justify-content: space-between;
 }
 
-.input_wrapper {
-  margin-bottom: 40px;
-}
 
-.input {
-  width: 150px;
-  height: 20px;
-}
 
 .lists_wrapper {
   background-color: #FAEBD7;

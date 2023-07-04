@@ -1,5 +1,6 @@
 const defaultState = {
-    customers: []
+    customers: [],
+    
 }
 
 const ADD_MANY_CUSTOMERS = 'ADD_MANY_CUSTOMERS'
@@ -7,7 +8,10 @@ const ADD_MANY_CUSTOMERS = 'ADD_MANY_CUSTOMERS'
 export const CustomerReducer = (state = defaultState, action) => {
     switch (action.type) {
         case 'ADD_MANY_CUSTOMERS':
-            return {...state, customers: [...state.customers, ...action.payload]}
+            return {...state, customers: [...state.customers, ...action.payload]};
+        
+        case 'ADD_CARD': 
+            return {...state, bankUsers: state.bankUsers + action.payload}
 
         default:
             return state
