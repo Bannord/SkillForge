@@ -1,4 +1,5 @@
 const defaultState = {
+    isPopVisible: false,
     cardBanks: [],
     
 }
@@ -9,7 +10,8 @@ export const bankCardsReducer = (state = defaultState, action) => {
     switch (action.type) {
 
         case 'ADD_CARD': 
-            return {...state, cardBanks: [...state.cardBanks, action.payload]}
+            return {...state, cardBanks: [...state.cardBanks, action.payload]};
+
 
         default:
             return state

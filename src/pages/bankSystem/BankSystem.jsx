@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./BanksSystem.scss";
 import { useDispatch, useSelector } from "react-redux";
+import CardForBank from "../../components/UI/cardForm/CardForBank";
+
 
 const BankSystem = () => {
-  const dispatch = useDispatch;
-  const cardBanks = useSelector((state) => state.cardBanks.cardBanks);
+  
+  const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
 
-  // не работает добавление карточки. разберись
-  const addCard = (name, price) => {
-    const card = {
-        name,
-        id: Date.now(),
-       price
+  const cardBanks = useSelector((state) => state.cardBanks.cardBanks);
+  const [isCardFormVisible, setIsCardFormVisible] = useState(false);
+
+  const addCard = (e) => {
+    e.preventDefault();
+    if (
+      e.target.cardPrice.value.trim() === "" ||
+      e.target.cardValue.value.trim() === "" ||
+      e.target.cardType.value.trim() === "" ||
+      e.target.numCard.value.trim() === "" ||
+      e.target.dateCard.value.trim() === ""
+    ) {
+      setErrors({ message: "Please fill in all fields" });
+      return;
     }
-    dispatch({type: 'ADD_CARD', payload: card})
-  }
+    const card = {
+      cardPrice: e.target.cardPrice.value,
+      cardValue: e.target.cardValue.value,
+      cardType: e.target.cardType.value,
+      numCard: e.target.numCard.value,
+      dateCard: e.target.dateCard.value,
+      id: Date.now(),
+    };
+    dispatch({ type: "ADD_CARD", payload: card });
+    setIsCardFormVisible(false)
+  };
+
+  const toggleCardForm = () => {
+    setIsCardFormVisible(!isCardFormVisible);
+  };
   return (
     <div className="Bank_container_wrapper">
       <div className="options_lists_wrapper">
@@ -27,26 +51,40 @@ const BankSystem = () => {
         </ul>
       </div>
       <div className="Added_bank_account_wrapper">
-        <button className="btn_added_account" onClick={() => addCard(prompt())}>Added account</button>
+        <button className="btn_added_account" onClick={toggleCardForm}>
+          Added account
+        </button>
       </div>
+      
+      {isCardFormVisible && (
+        <div className="popup_overlay">
+          <div className="popup_content">
+            <CardForBank 
+            errors={errors}
+            addCard={addCard}
+            toggleCardForm={toggleCardForm} />
+            
+          </div>
+        </div>
+      )}
       <div className="cards_wrapper">
-        {cardBanks.lenght > 0 ? (
+        {cardBanks.length > 0 ? (
           <>
             {cardBanks.map((card) => (
               <div className="card_item_wrapper">
                 <div className="price_wrapper">
-                  <p className="price">{card.price}</p>
-                  <span className="value">BYN</span>
+                  <p className="price">{card.cardPrice}</p>
+                  <span className="value">{card.cardValue}</span>
                 </div>
                 <div className="type_of_card_wrapper">
-                  <p className="type_of_card">Visa Classic</p>
+                  <p className="type_of_card">{card.cardType}</p>
                   <div className="img_refresh_price">
                     <img src="./repeat.svg" alt="repeat" />
                   </div>
                 </div>
                 <div className="date_card_wrapper">
-                  <p className="number_card">1398 1394</p>
-                  <p className="date">18.08.2025</p>
+                  <p className="number_card">{card.numCard}</p>
+                  <p className="date">{card.dateCard}</p>
                 </div>
               </div>
             ))}
